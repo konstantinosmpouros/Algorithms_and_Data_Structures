@@ -1,6 +1,6 @@
 # Elias and Fano Compression Algorithm
 
-The purpose of the README file is to explain in a detailed way how the  problems I found in this project have been solved.
+The purpose of the README file is to explain in a detailed way how the problem has been solved.
 
 ## Problem concept
 
