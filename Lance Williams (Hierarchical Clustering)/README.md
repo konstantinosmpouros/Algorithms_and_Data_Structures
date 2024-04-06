@@ -1,12 +1,12 @@
 # Lance and Williams Hierarchical Clustering
 
 ## Resolution rationale
-in order to solve the problem, we create a class called Cluster where we will create for each number at the beginning of an object and inside it will contain a list where each number will be entered. In the process, as we will merge objects between them, we will merge their lists and sort them. First we create some lists that will help us do all the calculations, which are: <br>
+in order to solve the problem, we create a class called Cluster where we will create for each number one object at the beginning and inside it will contain a list where each number will be entered. In the process, as we will merge objects between them, we will merge their lists and sort them. First we create some lists that will help us do all the calculations, which are: <br>
 1. all_clusters: A list that will store all objects of type Cluster
 2. distances: A 2D list that will contain all the possible distances of the objects we made.
-3. result: We will do in this list in each merge 2 object that we do the result that we want to print with the correct syntax.<br>
+3. result: We will need this list for every merge of 2 object in order to track the merges we are doing and have a summary at the end.<br>
 
-The logic goes like this:
+The concept goes as following:
 At the beginning, we create a list that will contain all the Objects that we will make and we initially sort all the objects in it, resulting in the following list:
 
 [1]<br>
@@ -20,7 +20,9 @@ At the beginning, we create a list that will contain all the Objects that we wil
 [20]<br>
 [25]<br>
 
-When we create the distances "table" where it will be n*n where n is the number of objects we made, we will put a very large value like 99999 in the middle of everything. Having the following table at the beginning:
+** The numbers are not random but we take them from the example.txt
+
+Then we create the distances "table" where its dimensions will be n*n where n is the number of objects we made and we will put a very large value like 99999 in every when we initialize it. Resulting with the following table:
 
 [99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999]<br>
 [99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999]<br>
@@ -34,7 +36,7 @@ When we create the distances "table" where it will be n*n where n is the number 
 [99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999]<br>
 
 
-At the beginning we will update this table by putting in each position the correct distance which at the beginning will be the difference of the numbers that each cluster has but in the position that marks the distance between a cluster and itself we will leave it at 99999. That is, having this the table:<br>
+Then we will update this table by putting in each cell the distance between the row number and the col number, which will be the difference of the numbers that each cluster has. But in the position that marks the distance between a cluster with itself we will leave it at 99999. Resulting with the following updated table:<br>
 
 [99999, 1.0, 3.0, 5.0, 6.0, 9.0, 11.0, 18.0, 19.0, 24.0]<br>
 [1.0, 99999, 2.0, 4.0, 5.0, 8.0, 10.0, 17.0, 18.0, 23.0]<br>
