@@ -1,13 +1,13 @@
 # Lance and Williams Hierarchical Clustering
 
-## Σκεπτικο επίλυσης
-προκειμενου να λυσουμε το προβλημα φτιαχνουμε μια κλαση με ονομα Cluster οπου θα δημιουργησουμε για καθε εναν αριθμο στην αρχη απο ενα object και μεσα θα περιεχει μια λιστα οπου θα μπει ο καθε αριθμος. Στην πορεια καθως θα συγχωνευουμε objects μεταξυ τους θα ενωνουμε τις λιστες τους και θα τις κανουμε και sort. Αρχικα δημιουργουμε καποιες λιστες που θα μας βοηθησουν να κανουμε ολους τους υπολογισμους οι οποιες ειναι: <br>
-1. all_clusters: Μια λιστα που θα φυλοξενη ολα τα objects τυπου Cluster
-2. distances: Μια λιστα 2D οπου θα περιεχει ολες τις πιθανες αποστασεις των objects που φτιαξαμε.
-3. result: Θα κανουμε σε αυτη την λιστα σε καθε merge 2 object που κανουμε το αποτελεσμα που θελουμε να τυπωσουμε με την σωστη συνταξη.<br>
+## Resolution rationale
+in order to solve the problem, we create a class called Cluster where we will create for each number at the beginning of an object and inside it will contain a list where each number will be entered. In the process, as we will merge objects between them, we will merge their lists and sort them. First we create some lists that will help us do all the calculations, which are: <br>
+1. all_clusters: A list that will store all objects of type Cluster
+2. distances: A 2D list that will contain all the possible distances of the objects we made.
+3. result: We will do in this list in each merge 2 object that we do the result that we want to print with the correct syntax.<br>
 
-Η λογικη παει ως εξεις:
-Στην αρχη δημιουργουμε μια λιστα οπου θα εχει μεσα ολα τα Objects που θα φτιαξουμε και κανουμε αρχικα sort ολα τα objects μεσα σε αυτην με αποτελεσμα να παρουμε την ακολουθη λιστα: 
+The logic goes like this:
+At the beginning, we create a list that will contain all the Objects that we will make and we initially sort all the objects in it, resulting in the following list:
 
 [1]<br>
 [2]<br>
@@ -20,7 +20,7 @@
 [20]<br>
 [25]<br>
 
-Οταν δημιουργουμε τον "πινακα" distances οπου θα ειναι n*n οπου n το ποσα objects φτιαξαμε θα βαλουμε μεσα παντου μια πολυ μεγαλη τιμη οπως το 99999. Εχοντας στην αρχη τον ακολουθο πινακα:
+When we create the distances "table" where it will be n*n where n is the number of objects we made, we will put a very large value like 99999 in the middle of everything. Having the following table at the beginning:
 
 [99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999]<br>
 [99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999]<br>
@@ -34,7 +34,7 @@
 [99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999]<br>
 
 
-Στην αρχη θα παμε να ανανεωσουμε τον πινακα αυτον βαζοντας στην καθε θεση την σωστη αποσταση που στην αρχη θανε η διαφορα τον αριθμων που εχει το καθε cluster αλλα στις θεσης που σηματοδοτη την αποσταση ενως cluster με τον εαυτο του θα το αφησουμε 99999. Εχοντας δηλαδη αυτον τον πινακα:<br>
+At the beginning we will update this table by putting in each position the correct distance which at the beginning will be the difference of the numbers that each cluster has but in the position that marks the distance between a cluster and itself we will leave it at 99999. That is, having this the table:<br>
 
 [99999, 1.0, 3.0, 5.0, 6.0, 9.0, 11.0, 18.0, 19.0, 24.0]<br>
 [1.0, 99999, 2.0, 4.0, 5.0, 8.0, 10.0, 17.0, 18.0, 23.0]<br>
@@ -47,15 +47,15 @@
 [19.0, 18.0, 16.0, 14.0, 13.0, 10.0, 8.0, 1.0, 99999, 5.0]<br>
 [24.0, 23.0, 21.0, 19.0, 18.0, 15.0, 13.0, 6.0, 5.0, 99999]<br>
 
-Στην συνεχεια θα παμε καθε φορα να κανουμε merge τα δυο closest cluster μεχρι να μεινουμε μονο με ενα cluster. Θα ψαχνουμε απλα και θα περνουμε απο τον πινακα distances τα δυο index απο το min value ας πουμε τα indexes αυτα minx , miny.
+Then we will merge the two closest clusters each time until we are left with only one cluster. We will simply search and pass through the distances table the two indexes from the min value, let's call these indexes minx, miny.
 
-Αυτο σημαινει οτι αν το min value ειναι το distance[0][1] τοτε πρεπει να παρουμε το all_cluster[0], all_cluster[1] απο την λιστα all_clusters και να τα κανουμε merge. Τα κανουμε merge χωρις να αφαιρεσουμε ακομα τα δυο clusters απο την λιστα all_cluster και σημαντικο ειναι να κανουμε sort τα integers που εχουν μεσα τους.
+This means that if the min value is distance[0][1] then we have to get all_cluster[0], all_cluster[1] from the all_clusters list and merge them. We merge them without removing the two clusters from the all_cluster list, and it is important to sort the integers they contain.
 
-Εχοντας κρατηση τα indexes απο τα clusters που θα κανουμε merge παμε αναλογα με το methode που πειραμε απο το input να υπολογισουμε τα distances με ολα τα αλλα clusters. Τα s, t του τυπου ειναι δηλαδη τα all_clusters[minx], all_clusters[miny]. 
+Having reserved the indexes from the clusters that we will merge, we went according to the method we tried from the input to calculate the distances with all the other clusters. The s, t of the type are all_clusters[minx], all_clusters[miny].
 
-Επειτα εφοσον εχουμε βρει τις αποστασης κανουμε delete τα all_clusters[minx], all_clusters[miny] αναλογος με πιο απο τα δυο indexes ειναι μεγαλυτερο γιατι αλλιως θα μετατοπιστης το αλλο. Διαγραφουμε πρωτα το μεγαλυτερο και μετα το μικροτερο. Το ιδιο κανουμε και στον πινακα distances οπου διαγραφουμε την γραμμη και την στηλη με το μεγαλυτερο index και μετα το μικροτερο.
+Then, once we have found the distances, we delete all_clusters[minx], all_clusters[miny] corresponding to more than the two indexes is larger because otherwise you will move the other one. Delete the largest first and then the smallest. We do the same in the distances table, where we delete the line and the column with the largest index and then the smallest.
 
-Και τελος παμε και κανουμε insert το νεο cluster και τα νεα distances στην θεση που ηταν το μικρο index απο τα δυο clusters που καναμε merge. Ο λογος ειναι ο εξεις. Αν εχουμε την ακολουθει στηλε και θελουμε να κανουμε merge τα ακολουθα δυο clusters.
+And finally we go and insert the new cluster and the new distances in the position where the micro index was from the two clusters we merged. The reason is the following. If we have the following column and we want to merge the following two clusters.
 
 [1] <--<br>
 [2]<br>
@@ -68,7 +68,7 @@
 [20]<br>
 [25]<br>
 
-Τοτε το αποτελεσμα του merge θα ηταν το [1, 10] οποτε θα επρεπε να μπει στην θεση του μικροτερου απο τα δυο clusters για να διατηρηθει το sorting. Οποτε το αποτελεσμα θα ειναι το εξεις:
+Then the result of the merge would be [1, 10], so it would have to be placed in the position of the smaller of the two clusters to maintain the sorting. Then the result will be the following:
 
 [1, 10]<br>
 [2]<br>
@@ -80,13 +80,13 @@
 [20]<br>
 [25]<br>
 
-το ιδιο ακριβως κανουμε και στην 2D λιστα με τις αποστασεις. Διαγραφουμε τις παλιες αποστασεις και παμε στο μικροτερο index και βαζουμε τις νεες αποστασης αλλα με μια μικρη διαφορα.
+we do exactly the same in the 2D list with the distances. We delete the old distances and go to the smallest index and put the new distances but with a small difference.
 
-Ας πουμε οτι η λιστα με τις νεες αποστασης ειναι η ακολουθη:<br>
+Let's say that the list of new distances is as follows:<br>
 dist = [1, 5, 6, 1, 2.5]
 
-Και θελουμε να την κανουμε insert στο index 1. Πρεπει πρωτα να παμε και να βαλουμε και το στοιχειο 99999 στο σημειο που θα σηματοδοτη την αποσταση του νεου cluster με τον εαυτο του. Η θεση αυτη θα ειναι προφανος το index που παμε να το κανουμε insert δηλαδη dist.insert(1, 99999). Με αποτελεσμα θα βαλουμε στον πινακα το εξεις σαν στηλη και σαν γραμμη:
+And we want to insert it at index 1. We must first go and put the element 99999 at the point that will mark the distance of the new cluster from itself. This position will obviously be the index we are going to insert, i.e. dist.insert(1, 99999). As a result, we will put the following in the table as a column and as a row:
 
 [1, 99999, 5, 6, 1, 2.5]
 
-Επαναλλαμβανουμε το ιδιο πραγμα μεχρι να μεινουμε με ενα cluster.
+We repeat the same thing until we are left with one cluster.
