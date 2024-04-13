@@ -36,3 +36,9 @@ We start with:
 ## Tromino coloring solution
 
 After solving the direction of the trominos we will place we must also solve the problem of the coloring we will be giving to each tromino in order not to have same colors placing together. The solution to this is simple cause the only thing we need to do is to place the blue color in the upper left and bottom right, the red in the upper right and bottom left and the green in the center so there will never be a side in common with the same colors.
+
+## How to run
+In order to run this algorithm the only thing you need to do is download the 2 python files in one directory, access it through the cmd and run 
+> python tromino_tiling.py 3
+
+the 3 is the n that will be used to create the table. if you enter 3 then the table will be 2^3 * 2^3 = 8 * 8
