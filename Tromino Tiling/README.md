@@ -39,6 +39,7 @@ After solving the direction of the trominos we will place we must also solve the
 
 ## How to run
 In order to run this algorithm the only thing you need to do is download the 2 python files in one directory, access it through the cmd and run 
-> python tromino_tiling.py 3
+
+    python tromino_tiling.py 3
 
 the 3 is the n that will be used to create the table. if you enter 3 then the table will be 2^3 * 2^3 = 8 * 8
