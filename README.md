@@ -8,7 +8,7 @@ The purpose of this repository is to document my personal exploration and master
 
 ## Repository Structure
 
-Each directory within this repository is dedicated to a specific algorithm or data structure, containing its Python implementation 
+Each directory within this repository is dedicated to a specific algorithm or problem, containing its Python implementation 
 
 Each directory aims to not just provide code, but also to explain the thought process, and the scenario of the implementation in order to better understand each step.
 
@@ -18,6 +18,6 @@ Feel free to browse through the directories, read the explanations, and run the 
 
 ## Contact
 
-If you have questions, suggestions, or would like to discuss the algorithms and data structures covered in this repository, please feel free to send me and [email](kostasbouros@hotmail.gr).
+If you have questions, suggestions, or would like to discuss the algorithms and data structures covered in this repository, please feel free to send me an email: kostasbouros@hotmail.gr
 
 Happy Exploring!

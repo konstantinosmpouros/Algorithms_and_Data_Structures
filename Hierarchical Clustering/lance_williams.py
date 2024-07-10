@@ -22,7 +22,7 @@ def read_args():
 # Read the example txt and create one cluster for every object we read and append them all in a list.
 def create_all_cluster():
     try:
-        # Try read te file and split every space to a new line
+        # Try read the file and split every space to a new line
         with open(sys.argv[2], 'r') as file:
             file = file.readline().split()
             # Append all the number to a list so every number is a new row so its like we have a new cluster. One cluster per row
@@ -233,7 +233,7 @@ def ward_method(s: Cluster, t: Cluster, all_clusters: list, distances: list, c1:
 
 
 # The main method
-def main():
+if __name__ == "__main__":
     # Start by reading the args and make sure the input are ok!
     read_args()
 
@@ -243,7 +243,3 @@ def main():
     # Perform the lance williams method
     lance_williams(all_clusters)
 
-
-# Auto execute main
-if __name__ == "__main__":
-    main()

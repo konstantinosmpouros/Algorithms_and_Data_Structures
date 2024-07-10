@@ -5,6 +5,20 @@ import sys
 
 # Read the data of the file given from the cmd`
 def read_data():
+    """
+    Reads integer data from a file specified via the command line and returns it as a list.
+
+    This function attempts to open a file whose path is provided as the first command line argument.
+    It reads the file line by line, converts each line to an integer, and stores the integers in a list.
+    If an IOError occurs (e.g., if the file does not exist or cannot be opened), it prints an error message.
+
+    Returns:
+        list: A list of integers read from the specified file.
+
+    Raises:
+        IOError: If an error occurs while attempting to read the file.
+    """
+
     try:
         # save the data in a list
         data = []
@@ -18,12 +32,6 @@ def read_data():
             return data
     except IOError:
         print('Error while reading the data from the file')
-
-
-# Print the bytes of a bytearray in binary mode with 8 bits
-def print_bytearray(byte_array: bytearray):
-    for byte in byte_array:
-        print(format(byte, '#010b')[2:])
 
 
 # A method to extract the first l bits of a byte
@@ -141,8 +149,46 @@ def create_u(l: int, data: list):
     return u_bytearray
 
 
+# Print the bytes of a bytearray in binary mode with 8 bits
+def print_bytearray(byte_array: bytearray):
+    """
+    Prints each byte of a bytearray in binary format with 8 bits.
+
+    This function iterates over each byte in the given bytearray and prints its binary representation
+    formatted to 8 bits. The binary strings are generated using the format function, ensuring
+    each byte is displayed as a binary number with leading zeros if necessary.
+
+    Args:
+        byte_array (bytearray): The bytearray to be printed in binary format.
+
+    Example:
+        If byte_array = bytearray([1, 2, 3]), the output will be:
+        00000001
+        00000010
+        00000011
+    """
+    for byte in byte_array:
+        print(format(byte, '#010b')[2:])
+
+
 # Printing the results of the algorithm as said in the pdf
 def results(l, l_bytearray, u_bytearray, digest):
+    """
+    Prints the results of the algorithm as specified.
+
+    This function prints the following details in sequence:
+    1. The value of l.
+    2. The label 'L' followed by the binary representation of each byte in the l_bytearray.
+    3. The label 'U' followed by the binary representation of each byte in the u_bytearray.
+    4. The provided digest string.
+
+    Args:
+        l (int): An integer value representing the parameter l.
+        l_bytearray (bytearray): A bytearray whose bytes will be printed in binary format.
+        u_bytearray (bytearray): A bytearray whose bytes will be printed in binary format.
+        digest (str): A string representing the digest.
+    """
+    
     print('l ' + str(l))
     print('L')
     print_bytearray(l_bytearray)
@@ -151,7 +197,7 @@ def results(l, l_bytearray, u_bytearray, digest):
     print(digest)
 
 
-def main():
+if __name__ == "__main__":
     # Read the data
     data = read_data()
 
@@ -171,6 +217,3 @@ def main():
 
     results(l, l_bytearray, u_bytearray, digest)
 
-
-if __name__ == "__main__":
-    main()
